@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Scene 1: Entry Screen -->
+        <section id="scene-1" class="scene active">
+            <div class="particles" id="particles"></div>
+            <div class="content">
+                <h1 class="glow-text">A Special Surprise Awaits...</h1>
+                <button id="start-btn" class="btn glow-btn">Start</button>
+            </div>
+        </section>
+        <!-- Scene 2: Name Input -->
+        <section id="scene-2" class="scene">
+            <div class="content">
+                <h2 class="fade-in">What is your name?</h2>
+                <div class="input-container">
+                    <input type="text" id="name-input" placeholder="Enter your name..." autocomplete="off">
+                    <button id="name-submit" class="btn">Submit</button>
+                </div>
+                <div id="typing-container" class="typing-text"></div>
+            </div>
+        </section>
+        <!-- Scene 3: The Simple Question -->
+        <section id="scene-3" class="scene">
+            <div class="content">
+                <h2 class="fade-in">Before we continue...</h2>
+                <p class="emotional-text delay-1">Do you know how much you are loved?</p>
+                <div class="input-container">
+                    <button id="question-yes" class="btn">Yes, I do! ❤️</button>
+                    <button id="question-no" class="btn secondary">Not enough! 😉</button>
+                </div>
+            </div>
+        </section>
+        <!-- Scene 4: Emotional Message -->
+        <section id="scene-4" class="scene">
+            <div class="glow-bg"></div>
+            <div class="content">
+                <p class="emotional-text">You are not just special...</p>
+                <p class="emotional-text delay-1">You are truly amazing.</p>
+            </div>
+        </section>
+        <!-- Scene 5: Celebration -->
+        <section id="scene-5" class="scene">
+            <canvas id="celebration-canvas"></canvas>
+            <div class="content">
+                <h1 class="celebration-text">HAPPY BIRTHDAY <span id="display-name"></span> 🎉</h1>
+            </div>
+        </section>
+        <!-- Scene 6: Memory / Slideshow (Moved to Last) -->
+        <section id="scene-6" class="scene">
+            <div class="slideshow-layout">
+                <div class="qualities-container" id="qualities-text">
+                    <p class="quality active">Your kindness is unmatched.</p>
+                    <p class="quality">Your smile lights up the room.</p>
+                    <p class="quality">You inspire everyone around you.</p>
+                    <p class="quality">You are a rare and precious soul.</p>
+                </div>
+                <div class="slideshow-container" id="slideshow">
+                    <img src="images/1.jpeg" alt="Memory 1" class="slide active">
+                    <img src="images/2.jpeg" alt="Memory 2" class="slide">
+                    <img src="images/3.jpeg" alt="Memory 3" class="slide">
+                    <img src="images/4.jpeg" alt="Memory 4" class="slide">
+                </div>
+            </div>
+        </section>
+        <!-- Scene 7: Final Message -->
+        <section id="scene-7" class="scene">
+            <div class="content">
+                <p class="final-text">May your life be filled with happiness, success, and endless joy.</p>
+                <div class="controls">
+                    <button id="music-toggle" class="btn secondary">🎵 Pause Music</button>
+                    <button id="replay-btn" class="btn secondary">🔄 Replay Experience</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>

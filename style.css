@@ -1,0 +1,349 @@
+:root {
+    --bg-color: #0a0a0a;
+    --primary-color: #ff3e6c;
+    --secondary-color: #00d2ff;
+    --text-color: #ffffff;
+    --accent-glow: rgba(255, 62, 108, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+}
+
+#app {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* Scene Transitions */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s;
+    text-align: center;
+    padding: 20px;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content {
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Typography & Glow */
+.glow-text {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    animation: textGlow 2s infinite alternate;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); }
+    to { text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color); }
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 10px;
+}
+
+/* Scene 1: Particles */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: float 10s infinite linear;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh) translateX(0); }
+    to { transform: translateY(-10vh) translateX(50px); }
+}
+
+/* Scene 2: Name Input */
+.input-container {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#name-input {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+    color: white;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#name-input:focus {
+    border-color: var(--primary-color);
+}
+
+.typing-text {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    min-height: 2em;
+    color: var(--secondary-color);
+}
+
+/* Scene 3: Emotional Message */
+.glow-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 62, 108, 0.2) 0%, transparent 70%);
+    animation: pulseBg 4s infinite alternate;
+}
+
+@keyframes pulseBg {
+    from { opacity: 0.3; transform: scale(1); }
+    to { opacity: 0.7; transform: scale(1.2); }
+}
+
+.emotional-text {
+    font-size: 2.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    margin: 10px 0;
+}
+
+.scene.active .emotional-text {
+    animation: fadeInSlide 2s forwards;
+}
+
+.scene.active .emotional-text.delay-1 {
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeInSlide {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scene 4: Slideshow & Qualities */
+.slideshow-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    z-index: 20;
+}
+
+.qualities-container {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+}
+
+.quality {
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+    opacity: 0;
+    transform: translateX(-30px);
+    display: none;
+    transition: all 0.8s ease;
+}
+
+.quality.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slideshow-container {
+    position: relative;
+    flex: 1.5;
+    height: 480px;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    background-color: #000;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Scene 5: Celebration */
+#celebration-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.celebration-text {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #ff0, 0 0 20px #f0f;
+    animation: shake 0.5s infinite alternate;
+    width: 100vw;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    margin: 0 auto;
+}
+
+@keyframes shake {
+    from { transform: translate(-2px, -2px) rotate(-1deg); }
+    to { transform: translate(2px, 2px) rotate(1deg); }
+}
+
+/* Scene 7: Final Message */
+.final-text {
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #fff, var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .scene {
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    
+    .slideshow-layout {
+        flex-direction: column-reverse;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .qualities-container {
+        text-align: center;
+        padding: 10px;
+        flex: none;
+    }
+    
+    .quality {
+        font-size: 1.4rem;
+    }
+    
+    .slideshow-container {
+        height: 300px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        flex: none;
+        border: 1px solid rgba(0, 210, 255, 0.2);
+    }
+
+    .slide {
+        object-fit: contain;
+        background-color: #000;
+    }
+}
+
+/* Specific mobile overrides */
+@media (max-width: 600px) {
+    .glow-text { font-size: 1.6rem; }
+    .emotional-text { font-size: 1.4rem; }
+    .celebration-text { font-size: 1.8rem; }
+    .final-text { font-size: 1.1rem; }
+    #name-input { width: 70%; }
+    .btn { padding: 8px 16px; font-size: 0.9rem; }
+    
+    .slideshow-container {
+        height: 280px;
+    }
+}
+
+
